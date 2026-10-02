@@ -26,3 +26,13 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_REPOSITORY_KATA }}:latest
+
+      - name: Request Render to deploy this image
+        shell: bash
+        run: |
+          set -euo pipefail
+          image_url="docker.io/${{ vars.DOCKERHUB_USERNAME }}/${{ vars.DOCKERHUB_REPOSITORY_KATA }}:latest"
+          curl --fail-with-body --silent --show-error \
+            --get \
+            --data-urlencode "imgURL=${image_url}" \
+            "${{ secrets.RENDER_KATA }}"
