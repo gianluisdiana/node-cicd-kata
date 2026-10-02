@@ -40,5 +40,20 @@ export async function createApp(): Promise<FastifyInstance> {
     () => getDiceRoll(),
   );
 
+  app.get(
+    '/test',
+    {
+      schema: {
+        summary: 'Test that returns "Hello World"',
+        response: {
+          200: {
+            type: 'string',
+          },
+        },
+      },
+    },
+    () => 'Hello world',
+  );
+
   return app;
 }
