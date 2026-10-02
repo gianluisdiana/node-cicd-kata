@@ -35,4 +35,4 @@ jobs:
           curl --fail-with-body --silent --show-error \
             --get \
             --data-urlencode "imgURL=${image_url}" \
-            "${{ secrets.RENDER_KATA }"
+            "${{ secrets.RENDER_KATA }}"
